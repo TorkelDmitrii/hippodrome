@@ -63,7 +63,7 @@ public class HorseTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {0.6})
-    void methodMoveUsesGetRandomDouble() {
+    public void methodMoveUsesGetRandomDouble() {
         try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
             mockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
             Horse horse = new Horse("Масяня", 1, 2);
