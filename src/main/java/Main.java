@@ -1,8 +1,10 @@
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class Main {
-
     public static void main(String[] args) throws Exception {
         List<Horse> horses = List.of(
                 new Horse("Буцефал", 1.4),
@@ -15,6 +17,8 @@ public class Main {
         );
         Hippodrome hippodrome = new Hippodrome(horses);
 
+        log.info("Начало скачек. Количество: {}", horses.size());
+
         for (int i = 0; i < 100; i++) {
             hippodrome.move();
             watch(hippodrome);
@@ -23,6 +27,8 @@ public class Main {
 
         String winnerName = hippodrome.getWinner().getName();
         System.out.println("Победил " + winnerName + "!");
+
+        log.info("Окончание скачек. Победитель: {}", winnerName);
     }
 
     private static void watch(Hippodrome hippodrome) throws Exception {

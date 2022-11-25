@@ -61,14 +61,24 @@ public class HorseTest {
         assertEquals(0, horse.getDistance());
     }
 
-    @ParameterizedTest
-    @ValueSource(doubles = {0.6})
-    public void methodMoveUsesGetRandomDouble() {
+    @Test
+    public void methodMoveUsesGetRandom() {
         try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
+            new Horse("Масяня", 1, 2).move();
             mockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {0.5, 0.8, 0.9})
+    public void methodMoveUsesGetRandomDouble(double random) {
+        try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
             Horse horse = new Horse("Масяня", 1, 2);
+            mockedStatic.when(() -> Horse.getRandomDouble(0.2, 0.9)).thenReturn(random);
+
             horse.move();
-            assertEquals(1+2*0.5,horse.getDistance());
+
+            assertEquals(2 + 1 * random, horse.getDistance());
         }
     }
 }
