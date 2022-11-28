@@ -1,6 +1,4 @@
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,7 +8,6 @@ import static java.util.Objects.isNull;
 
 @Slf4j
 public class Hippodrome {
-    //private static final Logger logger = LoggerFactory.getLogger(Main.class);
     private final List<Horse> horses;
 
     public Hippodrome(List<Horse> horses) {
